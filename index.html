@@ -7,18 +7,41 @@
     <link rel="stylesheet" href="css/styles.css" />
   </head>
   <body>
+    <header class="topbar">
+      <a href="#" class="brand">Verão na Praia</a>
+      <nav class="nav-links">
+        <a href="#dicas">Dicas</a>
+        <a href="#destinos">Destino</a>
+      </nav>
+    </header>
+
     <main class="page">
       <section class="hero">
-        <h1>Verão na Praia</h1>
-        <p>
-          Chegou a hora de aproveitar o sol, o mar e os dias mais leves do ano.
-          Confira estas dicas para curtir o verão com conforto e segurança.
-        </p>
+        <div class="hero-content">
+          <div>
+            <p class="eyebrow">Seu guia de verão</p>
+            <h1>Verão na Praia</h1>
+            <p>
+              Chegou a hora de aproveitar o sol, o mar e os dias mais leves do
+              ano. Confira estas dicas para curtir o verão com conforto, alegria
+              e muito estilo.
+            </p>
+            <div class="buttons">
+              <a href="#dicas" class="btn btn-primary">Ver dicas</a>
+              <a href="#destinos" class="btn btn-secondary">Descobrir mais</a>
+            </div>
+          </div>
+          <img
+            class="hero-image"
+            src="css/imagens/beach.png"
+            alt="Praia ensolarada"
+          />
+        </div>
       </section>
 
-      <section class="tips">
+      <section id="dicas" class="tips">
         <article class="card">
-          <img src="css/imagens/beach.png" alt="Praia" />
+          <img src="css/imagens/protetor-solar.png" alt="Protetor solar" />
           <h2>1. Proteja-se do sol</h2>
           <p>Use protetor solar, chapéu e óculos de sol para cuidar da pele.</p>
         </article>
@@ -39,9 +62,81 @@
         </article>
       </section>
 
+      <section id="destinos" class="highlight">
+        <h2>Momento perfeito para relaxar</h2>
+        <p>
+          Um dia de praia é mais especial quando você organiza tudo com carinho:
+          sombra, água, música e tempo para desacelerar.
+        </p>
+      </section>
+
+      <section class="api-section" aria-live="polite">
+        <div class="section-title">
+          <h2>Destinos em destaque</h2>
+          <p>
+            Os lugares abaixo são carregados de uma API pública e aparecem
+            automaticamente.
+          </p>
+        </div>
+        <div id="destinos-api" class="api-grid">
+          <p class="api-loading">Carregando destinos...</p>
+        </div>
+      </section>
+
+      <section class="weather-card">
+        <h2>Clima perfeito para praia</h2>
+        <p>Sol, calor e dias ideais para aproveitar o mar.</p>
+        <button
+          class="btn btn-primary"
+          type="button"
+          onclick="this.innerText = 'Preparado para o verão!'"
+        >
+          Clique aqui
+        </button>
+      </section>
+
       <footer class="footer">
         <p>Seu verão merece paz, diversão e muito cuidado.</p>
       </footer>
     </main>
+
+    <script>
+      async function carregarDestinos() {
+        const container = document.getElementById("destinos-api");
+
+        try {
+          const resposta = await fetch(
+            "https://restcountries.com/v3.1/all?fields=name,capital,flags",
+          );
+          const dados = await resposta.json();
+
+          const destinos = dados
+            .filter((pais) => pais.capital && pais.capital.length)
+            .slice(0, 6)
+            .map((pais) => ({
+              nome: pais.name.common,
+              capital: pais.capital[0],
+              bandeira: pais.flags?.png || "",
+            }));
+
+          container.innerHTML = destinos
+            .map(
+              (destino) => `
+                <article class="api-card">
+                  <img src="${destino.bandeira}" alt="Bandeira de ${destino.nome}" />
+                  <h3>${destino.nome}</h3>
+                  <p>Capital: ${destino.capital}</p>
+                </article>
+              `,
+            )
+            .join("");
+        } catch (erro) {
+          container.innerHTML =
+            '<p class="api-error">Não foi possível carregar os destinos agora.</p>';
+        }
+      }
+
+      carregarDestinos();
+    </script>
   </body>
 </html>
