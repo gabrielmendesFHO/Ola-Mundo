@@ -1,11 +1,11 @@
 :root {
   color-scheme: light;
-  --sky: #7ec8e3;
-  --sea: #1f6f8b;
-  --sand: #f7e7b2;
-  --text: #1f2933;
-  --card: #ffffffd9;
-  --shadow: 0 12px 30px rgba(15, 23, 42, 0.14);
+  --sky: #ff9f1c;
+  --sea: #ff6b35;
+  --sand: #ffd166;
+  --text: #5a2a0f;
+  --card: #fff3d8e6;
+  --shadow: 0 12px 30px rgba(122, 54, 18, 0.2);
 }
 
 * {
@@ -16,7 +16,7 @@ body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
   color: var(--text);
-  background: linear-gradient(135deg, var(--sky) 0%, #d6f3ff 45%, var(--sand) 100%);
+  background: linear-gradient(135deg, #ffb347 0%, #ff7f50 45%, #ffd166 100%);
   min-height: 100vh;
   position: relative;
   overflow-x: hidden;
@@ -112,7 +112,7 @@ body::after {
   font-weight: bold;
   text-transform: uppercase;
   letter-spacing: 0.2em;
-  color: #0f766e;
+  color: #9a2c0f;
 }
 
 .hero h1 {
@@ -150,14 +150,14 @@ body::after {
 }
 
 .btn-primary {
-  background: var(--sea);
+  background: linear-gradient(135deg, #ff7f50, #ffb347);
   color: white;
 }
 
 .btn-secondary {
   background: white;
   color: var(--sea);
-  border: 1px solid rgba(31, 111, 139, 0.25);
+  border: 1px solid rgba(255, 107, 53, 0.25);
 }
 
 .tips {
@@ -326,7 +326,7 @@ body::after {
 .footer {
   margin-top: 24px;
   text-align: center;
-  color: #355c7d;
+  color: #8b2f0f;
   font-weight: bold;
 }
 
