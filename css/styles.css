@@ -18,6 +18,42 @@ body {
   color: var(--text);
   background: linear-gradient(135deg, var(--sky) 0%, #d6f3ff 45%, var(--sand) 100%);
   min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  width: 140px;
+  height: 140px;
+  opacity: 0.18;
+  pointer-events: none;
+  z-index: 0;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.12));
+}
+
+body::before {
+  top: 70px;
+  right: 25px;
+  background-image: url("imagens/chapeu-de-pamela.png");
+  transform: rotate(10deg);
+}
+
+body::after {
+  bottom: 30px;
+  left: 20px;
+  background-image: url("imagens/oculos-de-sol.png");
+  transform: rotate(-8deg);
+}
+
+.page {
+  position: relative;
+  z-index: 1;
 }
 
 .page {
@@ -58,6 +94,38 @@ body {
   border-radius: 18px;
   padding: 22px;
   box-shadow: var(--shadow);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 36px rgba(15, 23, 42, 0.2);
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: auto -16px -18px auto;
+  width: 84px;
+  height: 84px;
+  background-image: url("imagens/garrafa-de-agua.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0.12;
+  pointer-events: none;
+  transform: rotate(-10deg);
+}
+
+.card img {
+  display: block;
+  width: 100%;
+  max-width: 120px;
+  height: auto;
+  margin: 0 auto 14px;
+  border-radius: 14px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
 }
 
 .card h2 {
